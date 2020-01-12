@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Gravity Sound - Boss Mode CC BY 4.0.ogg-756613771059539fc7aec9e5bb64faa1.oggstr"
+
+[deps]
+
+source_file="res://Sound/Gravity Sound - Boss Mode CC BY 4.0.ogg"
+dest_files=[ "res://.import/Gravity Sound - Boss Mode CC BY 4.0.ogg-756613771059539fc7aec9e5bb64faa1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

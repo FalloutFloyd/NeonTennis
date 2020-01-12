@@ -1,0 +1,83 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://scripts/Settings.gd" type="Script" id=1]
+[ext_resource path="res://Img/title/large/graphics1.png" type="Texture" id=2]
+[ext_resource path="res://Img/title/large/graphics3.png" type="Texture" id=3]
+[ext_resource path="res://Img/title/large/graphics2.png" type="Texture" id=4]
+[ext_resource path="res://Img/title/large/sound1.png" type="Texture" id=5]
+[ext_resource path="res://Img/title/large/sound3.png" type="Texture" id=6]
+[ext_resource path="res://Img/title/large/sound2.png" type="Texture" id=7]
+[ext_resource path="res://Img/title/large/credits1.png" type="Texture" id=8]
+[ext_resource path="res://Img/title/large/credits3.png" type="Texture" id=9]
+[ext_resource path="res://Img/title/large/credits2.png" type="Texture" id=10]
+[ext_resource path="res://Img/title/large/back1.png" type="Texture" id=11]
+[ext_resource path="res://Img/title/large/back3.png" type="Texture" id=12]
+[ext_resource path="res://Img/title/large/back2.png" type="Texture" id=13]
+[ext_resource path="res://environments/glow.tres" type="Environment" id=14]
+
+[node name="settings" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 385.0
+margin_top = 134.0
+margin_right = 1535.0
+margin_bottom = 946.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="graphics" type="TextureButton" parent="CenterContainer/VBoxContainer"]
+margin_right = 1150.0
+margin_bottom = 200.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+
+[node name="sound" type="TextureButton" parent="CenterContainer/VBoxContainer"]
+margin_top = 204.0
+margin_right = 1150.0
+margin_bottom = 404.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
+
+[node name="credits" type="TextureButton" parent="CenterContainer/VBoxContainer"]
+margin_top = 408.0
+margin_right = 1150.0
+margin_bottom = 608.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 10 )
+
+[node name="back" type="TextureButton" parent="CenterContainer/VBoxContainer"]
+margin_top = 612.0
+margin_right = 1150.0
+margin_bottom = 812.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 13 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 14 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+[connection signal="pressed" from="CenterContainer/VBoxContainer/graphics" to="." method="_on_graphics_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/sound" to="." method="_on_sound_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/back" to="." method="_on_back_pressed"]

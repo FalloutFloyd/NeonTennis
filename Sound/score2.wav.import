@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/score2.wav-e7d8a4b67689d4352c52b30b55617c30.sample"
+
+[deps]
+
+source_file="res://Sound/score2.wav"
+dest_files=[ "res://.import/score2.wav-e7d8a4b67689d4352c52b30b55617c30.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/powerup/neg10.gd" type="Script" id=1]
+[ext_resource path="res://Img/Power/neg10.png" type="Texture" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 36.2832, 38.6197 )
+
+[node name="neg10" type="Area2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+material = SubResource( 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+[connection signal="area_entered" from="." to="." method="_on_neg10_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
