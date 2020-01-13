@@ -9,11 +9,12 @@ var selection = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SinglePlayerLogic.CurrentMode = "MENU"
-	
 	$MarginContainer/VBoxContainer/Label2.set_text("HIGH SCORE: "+str(SinglePlayerLogic.topScore)+"\n\n")
+	selection = Global.menuSelection
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):	
+	Global.menuSelection = selection
 	if selection > 3:
 		selection = 1
 	elif selection < 1:

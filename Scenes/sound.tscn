@@ -19,14 +19,14 @@ font_data = ExtResource( 4 )
 size = 40
 font_data = ExtResource( 4 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 1, 1, 1, 1 )
 border_width_top = 10
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 1, 1, 1, 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=5]
 size = 40
 font_data = ExtResource( 4 )
 
@@ -75,8 +75,8 @@ margin_right = 575.0
 margin_bottom = 122.0
 custom_icons/grabber_highlight = ExtResource( 5 )
 custom_icons/grabber = ExtResource( 6 )
-custom_styles/slider = SubResource( 4 )
-custom_styles/grabber_area = SubResource( 5 )
+custom_styles/slider = SubResource( 3 )
+custom_styles/grabber_area = SubResource( 4 )
 min_value = -25.0
 max_value = 0.0
 step = 0.0
@@ -85,7 +85,7 @@ step = 0.0
 margin_top = 126.0
 margin_right = 575.0
 margin_bottom = 162.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 text = "Music"
 
 [node name="HSlider2" type="HSlider" parent="CenterContainer/VBoxContainer"]

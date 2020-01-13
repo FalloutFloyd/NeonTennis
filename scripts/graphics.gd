@@ -12,9 +12,12 @@ func _ready():
 	BABBY.pressed = Global.babbyModePressed
 	FULL.pressed = Global.fullscreenPressed
 	SPEED.value = SinglePlayerLogic.ColourSpeed
+	selection = Global.graphicsSelection
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	Global.graphicsSelection = selection
+	
 	if selection > 4:
 		selection = 1
 	elif selection < 1:

@@ -10,9 +10,12 @@ onready var BACK = $CenterContainer/VBoxContainer/back
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SinglePlayerLogic.CurrentMode = "OPTIONS"
+	selection = Global.settingsSelection
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):	
+	Global.settingsSelection = selection
+	
 	if selection > 4:
 		selection = 1
 	elif selection < 1:

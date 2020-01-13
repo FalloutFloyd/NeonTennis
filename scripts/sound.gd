@@ -13,9 +13,13 @@ func _ready():
 	
 	SFX.value = SinglePlayerLogic.SFXvolume
 	MUSIC.value = SinglePlayerLogic.MUSICvolume
+	
+	selection = Global.soundSelection
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	Global.soundSelection = selection
+	
 	if selection > 4:
 		selection = 1
 	elif selection < 1:

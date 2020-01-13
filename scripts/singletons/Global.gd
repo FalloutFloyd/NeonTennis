@@ -9,9 +9,18 @@ var fullscreenPressed = false
 var mute = false
 var mutePressed = false
 
+var settingsSelection = 1
+var soundSelection = 1
+var graphicsSelection = 1
+var menuSelection = 1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
+	
+	OS.window_size = OS.get_screen_size() / 1.5
+	
+	OS.center_window()
 	
 	OS.window_fullscreen = fullscreenPressed
 
