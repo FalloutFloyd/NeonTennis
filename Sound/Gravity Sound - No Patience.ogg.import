@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Gravity Sound - No Patience.ogg-422c8618f2a41c9b66c3b0d8cf92868d.oggstr"
+
+[deps]
+
+source_file="res://Sound/Gravity Sound - No Patience.ogg"
+dest_files=[ "res://.import/Gravity Sound - No Patience.ogg-422c8618f2a41c9b66c3b0d8cf92868d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

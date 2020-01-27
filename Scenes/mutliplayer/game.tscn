@@ -1,0 +1,394 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://scripts/multiplayer/MULTgame.gd" type="Script" id=1]
+[ext_resource path="res://Img/paddle.png" type="Texture" id=2]
+[ext_resource path="res://Img/tutorial/tutorialC1.png" type="Texture" id=3]
+[ext_resource path="res://scripts/tutorial1.gd" type="Script" id=4]
+[ext_resource path="res://Img/tutorial/tutorialC2.png" type="Texture" id=5]
+[ext_resource path="res://scripts/tutorial2.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/mutliplayer/ball.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Font/visitor1.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Scenes/Pause.tscn" type="PackedScene" id=9]
+[ext_resource path="res://environments/glow.tres" type="Environment" id=10]
+[ext_resource path="res://Sound/Gravity Sound - No Patience.ogg" type="AudioStream" id=11]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1481.38, 112.321 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 198.76, 513.064 )
+
+[sub_resource type="CanvasItemMaterial" id=3]
+blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 9, 96 )
+
+[sub_resource type="CanvasItemMaterial" id=5]
+blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 25.9964, 96.0023 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 13.0453, 40.5804 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "Grow"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 2 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Shrink"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 2 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Grow"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 2 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Shrink"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 2 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="CanvasItemMaterial" id=12]
+blend_mode = 1
+
+[sub_resource type="DynamicFont" id=13]
+size = 200
+use_mipmaps = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="CanvasItemMaterial" id=14]
+blend_mode = 1
+
+[sub_resource type="DynamicFont" id=15]
+size = 90
+font_data = ExtResource( 8 )
+
+[sub_resource type="CanvasItemMaterial" id=16]
+
+[sub_resource type="DynamicFont" id=17]
+size = 150
+outline_color = Color( 1, 0, 0, 1 )
+font_data = ExtResource( 8 )
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ],
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="gameTimer" type="Timer" parent="."]
+wait_time = 120.0
+one_shot = true
+autostart = true
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="top" type="StaticBody2D" parent="Walls" groups=[
+"top_wall",
+]]
+position = Vector2( 822.54, -113.449 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/top"]
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="bottom" type="StaticBody2D" parent="Walls" groups=[
+"bottom_wall",
+]]
+position = Vector2( 836.85, 1192.46 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/bottom"]
+shape = SubResource( 1 )
+
+[node name="Score" type="Node" parent="."]
+
+[node name="scoreBlue" type="Area2D" parent="Score"]
+editor/display_folded = true
+position = Vector2( 0, 541 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Score/scoreBlue"]
+shape = SubResource( 2 )
+
+[node name="scoreOrange" type="Area2D" parent="Score"]
+editor/display_folded = true
+position = Vector2( 1925.25, 541.495 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Score/scoreOrange"]
+shape = SubResource( 2 )
+
+[node name="paddleOrange" type="Node" parent="."]
+
+[node name="PaddleOrange" type="KinematicBody2D" parent="paddleOrange" groups=[
+"Paddle",
+]]
+editor/display_folded = true
+material = SubResource( 3 )
+position = Vector2( 288, 540 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="orangeBall" type="Area2D" parent="paddleOrange/PaddleOrange"]
+editor/display_folded = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paddleOrange/PaddleOrange/orangeBall"]
+position = Vector2( 35, 0 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="paddleOrange/PaddleOrange"]
+material = SubResource( 5 )
+texture = ExtResource( 2 )
+
+[node name="tutorial" type="Sprite" parent="paddleOrange/PaddleOrange"]
+editor/display_folded = true
+position = Vector2( 72, 0 )
+texture = ExtResource( 3 )
+script = ExtResource( 4 )
+
+[node name="Tween" type="Tween" parent="paddleOrange/PaddleOrange/tutorial"]
+
+[node name="Timer" type="Timer" parent="paddleOrange/PaddleOrange/tutorial"]
+wait_time = 2.5
+one_shot = true
+autostart = true
+
+[node name="Tween2" type="Tween" parent="paddleOrange/PaddleOrange/tutorial"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paddleOrange/PaddleOrange"]
+shape = SubResource( 6 )
+
+[node name="pad_up" type="Area2D" parent="paddleOrange/PaddleOrange"]
+editor/display_folded = true
+position = Vector2( 15, -48 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paddleOrange/PaddleOrange/pad_up"]
+shape = SubResource( 7 )
+
+[node name="pad_down" type="Area2D" parent="paddleOrange/PaddleOrange"]
+editor/display_folded = true
+position = Vector2( 15, 48 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="paddleOrange/PaddleOrange/pad_down"]
+shape = SubResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="paddleOrange"]
+root_node = NodePath("../PaddleOrange")
+anims/Grow = SubResource( 8 )
+anims/Shrink = SubResource( 9 )
+
+[node name="orangeTimer" type="Timer" parent="paddleOrange"]
+wait_time = 5.0
+one_shot = true
+
+[node name="paddleBlue" type="Node" parent="."]
+
+[node name="PaddleBlue" type="KinematicBody2D" parent="paddleBlue" groups=[
+"Paddle",
+]]
+editor/display_folded = true
+material = SubResource( 3 )
+position = Vector2( 1632, 540 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="paddleBlue/PaddleBlue"]
+material = SubResource( 5 )
+texture = ExtResource( 2 )
+
+[node name="tutorial" type="Sprite" parent="paddleBlue/PaddleBlue"]
+position = Vector2( -72, 0 )
+texture = ExtResource( 5 )
+script = ExtResource( 6 )
+
+[node name="Tween" type="Tween" parent="paddleBlue/PaddleBlue/tutorial"]
+
+[node name="Timer" type="Timer" parent="paddleBlue/PaddleBlue/tutorial"]
+wait_time = 2.5
+one_shot = true
+autostart = true
+
+[node name="Tween2" type="Tween" parent="paddleBlue/PaddleBlue/tutorial"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paddleBlue/PaddleBlue"]
+shape = SubResource( 6 )
+
+[node name="pad_up" type="Area2D" parent="paddleBlue/PaddleBlue"]
+position = Vector2( -15, -48 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paddleBlue/PaddleBlue/pad_up"]
+shape = SubResource( 7 )
+
+[node name="pad_down" type="Area2D" parent="paddleBlue/PaddleBlue"]
+position = Vector2( -15, 48 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="paddleBlue/PaddleBlue/pad_down"]
+shape = SubResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="paddleBlue"]
+root_node = NodePath("../PaddleBlue")
+anims/Grow = SubResource( 10 )
+anims/Shrink = SubResource( 11 )
+
+[node name="blueTimer" type="Timer" parent="paddleBlue"]
+wait_time = 5.0
+one_shot = true
+
+[node name="ballSpawn" type="Position2D" parent="."]
+position = Vector2( 960, 540 )
+
+[node name="ball" parent="." instance=ExtResource( 7 )]
+position = Vector2( 960, 540 )
+
+[node name="ballTimer" type="Timer" parent="."]
+wait_time = 16.0
+one_shot = true
+
+[node name="powerupTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="GUI" type="Control" parent="."]
+
+[node name="orangeScore" type="Label" parent="GUI"]
+modulate = Color( 1, 0.439216, 0, 1 )
+material = SubResource( 12 )
+margin_left = 333.501
+margin_top = 30.0
+margin_right = 626.501
+margin_bottom = 206.0
+rect_pivot_offset = Vector2( 146, 90 )
+custom_fonts/font = SubResource( 13 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="blueScore" type="Label" parent="GUI"]
+modulate = Color( 0, 0, 1, 1 )
+material = SubResource( 12 )
+margin_left = 1293.5
+margin_top = 30.0
+margin_right = 1586.5
+margin_bottom = 206.0
+rect_pivot_offset = Vector2( 146, 90 )
+custom_fonts/font = SubResource( 13 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="TimeLeft" type="Label" parent="GUI"]
+material = SubResource( 14 )
+margin_left = 864.0
+margin_top = 30.0
+margin_right = 1157.0
+margin_bottom = 206.0
+custom_fonts/font = SubResource( 15 )
+text = "0:00"
+align = 1
+valign = 1
+
+[node name="GameOver" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+color = Color( 0.0745098, 0.0745098, 0.0745098, 0.784314 )
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOver"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="Label" type="Label" parent="GameOver/CenterContainer"]
+material = SubResource( 16 )
+margin_left = 495.0
+margin_top = 472.0
+margin_right = 1425.0
+margin_bottom = 607.0
+rect_pivot_offset = Vector2( 442.5, 136.5 )
+custom_fonts/font = SubResource( 17 )
+text = "Orange Wins"
+align = 1
+valign = 1
+
+[node name="MenuTimer" type="Timer" parent="GameOver"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Pause" parent="." instance=ExtResource( 9 )]
+visible = false
+use_parent_material = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 10 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -6.969
+[connection signal="body_entered" from="Score/scoreBlue" to="." method="_on_scoreBlue_body_entered"]
+[connection signal="body_entered" from="Score/scoreOrange" to="." method="_on_scoreOrange_body_entered"]
+[connection signal="body_entered" from="paddleOrange/PaddleOrange/orangeBall" to="." method="_on_Pad1Score_body_entered"]
+[connection signal="timeout" from="paddleOrange/PaddleOrange/tutorial/Timer" to="paddleOrange/PaddleOrange/tutorial" method="_on_Timer_timeout"]
+[connection signal="tween_completed" from="paddleOrange/PaddleOrange/tutorial/Tween2" to="paddleOrange/PaddleOrange/tutorial" method="_on_Tween2_tween_completed"]
+[connection signal="timeout" from="paddleOrange/orangeTimer" to="." method="_on_orangeTimer_timeout"]
+[connection signal="timeout" from="paddleBlue/PaddleBlue/tutorial/Timer" to="paddleBlue/PaddleBlue/tutorial" method="_on_Timer_timeout"]
+[connection signal="tween_completed" from="paddleBlue/PaddleBlue/tutorial/Tween2" to="paddleBlue/PaddleBlue/tutorial" method="_on_Tween2_tween_completed"]
+[connection signal="timeout" from="paddleBlue/blueTimer" to="." method="_on_blueTimer_timeout"]
+[connection signal="timeout" from="ballTimer" to="." method="_on_ballTimer_timeout"]
+[connection signal="timeout" from="powerupTimer" to="." method="_on_powerupTimer_timeout"]
+[connection signal="timeout" from="GameOver/MenuTimer" to="." method="_on_MenuTimer_timeout"]

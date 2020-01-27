@@ -26,6 +26,13 @@ config/icon="res://icon.png"
 SinglePlayerLogic="*res://scripts/singletons/SinglePlayerLogic.gd"
 Global="*res://scripts/singletons/Global.gd"
 Preload="*res://scripts/singletons/Preload.gd"
+MultiplayerLogic="*res://scripts/multiplayer/MultiplayerLogic.gd"
+Settings="*res://scripts/singletons/SettingsCFG.gd"
+
+[debug]
+
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_class_variable=false
 
 [display]
 
@@ -165,10 +172,26 @@ menu_right={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
+pad2_upMULT={
+"deadzone": 0.25,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":73,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":3,"axis_value":-1.0,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":-1.0,"script":null)
+ ]
+}
+pad2_downMULT={
+"deadzone": 0.25,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":75,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":3,"axis_value":1.0,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":1.0,"script":null)
+ ]
+}
 
 [rendering]
 
 quality/2d/use_pixel_snap=true
+quality/reflections/texture_array_reflections=false
+quality/reflections/high_quality_ggx=false
 quality/filters/use_nearest_mipmap_filter=true
 environment/default_clear_color=Color( 0.0196078, 0.0196078, 0.0196078, 1 )
 quality/filters/msaa=2

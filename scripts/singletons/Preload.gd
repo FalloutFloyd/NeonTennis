@@ -15,6 +15,19 @@ onready var explosionPink = preload("res://Scenes/explosions/ExplosionPink.tscn"
 onready var explosionLGBT = preload("res://Scenes/explosions/ExplosionLGBT.tscn")
 onready var explosionACE = preload("res://Scenes/explosions/ExplosionACE.tscn")
 onready var explosionTRANS = preload("res://Scenes/explosions/ExplosionTRANS.tscn")
+onready var MULTball = preload("res://Scenes/mutliplayer/ball.tscn")
+onready var explosionDIR = preload("res://Scenes/explosions/directional/Explosion.tscn")
+onready var explosionBlueDIR = preload("res://Scenes/explosions/directional/ExplosionBlue.tscn")
+onready var explosionGreenDIR = preload("res://Scenes/explosions/directional/ExplosionGreen.tscn")
+onready var explosionPinkDIR = preload("res://Scenes/explosions/directional/ExplosionPink.tscn")
+onready var explosionLGBTDIR = preload("res://Scenes/explosions/directional/ExplosionLGBT.tscn")
+onready var explosionACEDIR = preload("res://Scenes/explosions/directional/ExplosionACE.tscn")
+onready var explosionTRANSDIR = preload("res://Scenes/explosions/directional/ExplosionTRANS.tscn")
+
+onready var neg1 = preload("res://Scenes/powerup/multiplayer/neg1.tscn")
+onready var add1 = preload("res://Scenes/powerup/multiplayer/add1.tscn")
+onready var MULTaddball = preload("res://Scenes/powerup/multiplayer/posBall.tscn")
+onready var paddleGrow = preload("res://Scenes/powerup/multiplayer/paddleGrow.tscn")
 
 #main scenes
 var settings = "res://Scenes/settings.tscn"
@@ -23,6 +36,7 @@ var menu = "res://Scenes/menu.tscn"
 var sound = "res://Scenes/sound.tscn"
 var SP = "res://Scenes/singleplayer/game.tscn"
 var credits = "res://Scenes/credits.tscn"
+var MP = "res://Scenes/mutliplayer/game.tscn"
 
 func _ready():
-	print(menu)
+	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://Img/paddle.png" type="Texture" id=2]
@@ -16,47 +16,41 @@
 extents = Vector2( 1481.38, 112.321 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 1500.43, 125.702 )
+extents = Vector2( 198.76, 513.064 )
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 1481.86, 123.446 )
+[sub_resource type="CanvasItemMaterial" id=3]
+blend_mode = 1
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 198.76, 513.064 )
+extents = Vector2( 9, 96 )
 
 [sub_resource type="CanvasItemMaterial" id=5]
 blend_mode = 1
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 9, 96 )
-
-[sub_resource type="CanvasItemMaterial" id=7]
-blend_mode = 1
-
-[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 25.9964, 96.0023 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 13.0453, 40.5804 )
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 9, 96.512 )
 
-[sub_resource type="CanvasItemMaterial" id=11]
+[sub_resource type="CanvasItemMaterial" id=9]
 blend_mode = 1
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=10]
 size = 160
 use_mipmaps = true
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=11]
 size = 100
 font_data = ExtResource( 8 )
 
-[sub_resource type="CanvasItemMaterial" id=14]
+[sub_resource type="CanvasItemMaterial" id=12]
 
-[sub_resource type="DynamicFont" id=15]
+[sub_resource type="DynamicFont" id=13]
 size = 150
 outline_color = Color( 1, 0, 0, 1 )
 font_data = ExtResource( 8 )
@@ -69,7 +63,6 @@ __meta__ = {
 }
 
 [node name="Walls" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="top" type="StaticBody2D" parent="Walls" groups=[
 "top_wall",
@@ -79,11 +72,6 @@ position = Vector2( 822.54, -113.449 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/top"]
 shape = SubResource( 1 )
 
-[node name="top" type="Area2D" parent="Walls/top"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/top/top"]
-shape = SubResource( 2 )
-
 [node name="bottom" type="StaticBody2D" parent="Walls" groups=[
 "bottom_wall",
 ]]
@@ -91,11 +79,6 @@ position = Vector2( 836.85, 1192.46 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/bottom"]
 shape = SubResource( 1 )
-
-[node name="bottom" type="Area2D" parent="Walls/bottom"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/bottom/bottom"]
-shape = SubResource( 3 )
 
 [node name="Lose" type="Node" parent="."]
 editor/display_folded = true
@@ -107,7 +90,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lose/loseLeft"]
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="loseRight" type="Area2D" parent="Lose"]
 position = Vector2( 1925.25, 541.495 )
@@ -116,14 +99,14 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lose/loseRight"]
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="paddle1" type="Node" parent="."]
 
 [node name="Paddle1" type="KinematicBody2D" parent="paddle1" groups=[
 "Paddle",
 ]]
-material = SubResource( 5 )
+material = SubResource( 3 )
 position = Vector2( 288, 540 )
 __meta__ = {
 "_edit_group_": true
@@ -133,10 +116,10 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="paddle1/Paddle1/Pad1Score"]
 position = Vector2( 35, 0 )
-shape = SubResource( 6 )
+shape = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="paddle1/Paddle1"]
-material = SubResource( 7 )
+material = SubResource( 5 )
 texture = ExtResource( 2 )
 
 [node name="tutorial" type="Sprite" parent="paddle1/Paddle1"]
@@ -154,26 +137,26 @@ autostart = true
 [node name="Tween2" type="Tween" parent="paddle1/Paddle1/tutorial"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="paddle1/Paddle1"]
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 
 [node name="pad_up" type="Area2D" parent="paddle1/Paddle1"]
 position = Vector2( 15, -48 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="paddle1/Paddle1/pad_up"]
-shape = SubResource( 9 )
+shape = SubResource( 7 )
 
 [node name="pad_down" type="Area2D" parent="paddle1/Paddle1"]
 position = Vector2( 15, 48 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="paddle1/Paddle1/pad_down"]
-shape = SubResource( 9 )
+shape = SubResource( 7 )
 
 [node name="paddle2" type="Node" parent="."]
 
 [node name="Paddle2" type="KinematicBody2D" parent="paddle2" groups=[
 "Paddle",
 ]]
-material = SubResource( 5 )
+material = SubResource( 3 )
 position = Vector2( 1632, 540 )
 __meta__ = {
 "_edit_group_": true
@@ -183,10 +166,10 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="paddle2/Paddle2/Pad2Score"]
 position = Vector2( -35, 0 )
-shape = SubResource( 10 )
+shape = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="paddle2/Paddle2"]
-material = SubResource( 7 )
+material = SubResource( 5 )
 texture = ExtResource( 2 )
 
 [node name="tutorial" type="Sprite" parent="paddle2/Paddle2"]
@@ -204,19 +187,19 @@ autostart = true
 [node name="Tween2" type="Tween" parent="paddle2/Paddle2/tutorial"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="paddle2/Paddle2"]
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 
 [node name="pad_up" type="Area2D" parent="paddle2/Paddle2"]
 position = Vector2( -15, -48 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="paddle2/Paddle2/pad_up"]
-shape = SubResource( 9 )
+shape = SubResource( 7 )
 
 [node name="pad_down" type="Area2D" parent="paddle2/Paddle2"]
 position = Vector2( -15, 48 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="paddle2/Paddle2/pad_down"]
-shape = SubResource( 9 )
+shape = SubResource( 7 )
 
 [node name="ballSpawn" type="Position2D" parent="."]
 position = Vector2( 960, 540 )
@@ -226,7 +209,7 @@ position = Vector2( 960, 540 )
 
 [node name="ballTimer" type="Timer" parent="."]
 wait_time = 16.0
-autostart = true
+one_shot = true
 
 [node name="powerupTimer" type="Timer" parent="."]
 one_shot = true
@@ -234,13 +217,13 @@ one_shot = true
 [node name="GUI" type="Control" parent="."]
 
 [node name="Label" type="Label" parent="GUI"]
-material = SubResource( 11 )
+material = SubResource( 9 )
 margin_left = 814.0
 margin_top = 30.0
 margin_right = 1107.0
 margin_bottom = 206.0
 rect_pivot_offset = Vector2( 146, 90 )
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 10 )
 text = "0"
 align = 1
 valign = 1
@@ -251,14 +234,13 @@ margin_top = 73.0
 margin_right = 1439.0
 margin_bottom = 163.0
 rect_pivot_offset = Vector2( 9, 4.5 )
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "XXX"
 align = 1
 valign = 1
 
 [node name="GameOver" type="Control" parent="."]
-editor/display_folded = true
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
@@ -266,20 +248,20 @@ margin_bottom = 40.0
 [node name="ColorRect" type="ColorRect" parent="GameOver"]
 margin_right = 1920.0
 margin_bottom = 1080.0
-color = Color( 0.0745098, 0.0745098, 0.0745098, 0.52549 )
+color = Color( 0.0745098, 0.0745098, 0.0745098, 0.784314 )
 
 [node name="CenterContainer" type="CenterContainer" parent="GameOver"]
 margin_right = 1920.0
 margin_bottom = 1080.0
 
 [node name="Label" type="Label" parent="GameOver/CenterContainer"]
-material = SubResource( 14 )
+material = SubResource( 12 )
 margin_left = 517.0
 margin_top = 403.0
 margin_right = 1402.0
 margin_bottom = 676.0
 rect_pivot_offset = Vector2( 442.5, 136.5 )
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "YOU LOSE
 Score: 1000"

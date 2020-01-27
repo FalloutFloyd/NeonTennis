@@ -70,7 +70,7 @@ texture_pressed = ExtResource( 9 )
 texture_hover = ExtResource( 10 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.15
 one_shot = true
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_Resume_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenu" to="." method="_on_MainMenu_pressed"]

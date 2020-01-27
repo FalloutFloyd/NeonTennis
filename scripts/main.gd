@@ -13,6 +13,8 @@ onready var gameOver = $GameOver
 onready var gameOverText = $GameOver/CenterContainer/Label
 onready var powerupTimer = $powerupTimer
 
+var i = 1
+
 #defines the score as 0, lives as 4 and number of balls as 1
 var lives = 4
 var ballCount = 1
@@ -25,21 +27,22 @@ var lost = false
 func _ready():	
 	SinglePlayerLogic.score = 0
 	SinglePlayerLogic.CurrentMode = "SP"
-	timer.wait_time = Global.rng.randi_range(10, 15)
+	timer.wait_time = Global.rng.randi_range(5, 15)
+	timer.start()
 	
-	$AudioStreamPlayer.volume_db = $AudioStreamPlayer.volume_db * -SinglePlayerLogic.MUSICvolume
+	$AudioStreamPlayer.volume_db = linear2db(Settings.MUSICvolume)
 	
-	if !Global.mute:
+	if !Settings.mute:
 		$AudioStreamPlayer.play()
 	else: 
 		pass
 	
 	Global.rng.randomize()
 	
-	var spawnTime = Global.rng.randi_range(20,30)
+	var spawnTime = Global.rng.randi_range(10,20)
 	powerupTimer.wait_time = spawnTime
 	powerupTimer.start()
-func _physics_process(delta):
+func _physics_process(_delta):
 	#the forces(?) for both paddles along with speeds
 	var pad1Pos = Vector2(0,0)
 	var pad2Pos = Vector2(0,0)
@@ -48,10 +51,12 @@ func _physics_process(delta):
 	var dir1 = Input.get_action_strength("pad1_down") - Input.get_action_strength("pad1_up")
 	var dir2 = Input.get_action_strength("pad2_down") - Input.get_action_strength("pad2_up")
 			
+#
 #	if Input.is_action_just_pressed("screenie"):
+#		i += 1
 #		var image = get_viewport().get_texture().get_data()
 #		image.flip_y()
-#		image.save_png("res://screenshot.png")
+#		image.save_png("res://screenshot" + str(i) + ".png")
 	
 	pad1Pos.y = speed * dir1
 	pad2Pos.y = speed * dir2
@@ -67,7 +72,6 @@ func _physics_process(delta):
 	#constantly checks for loss condition
 	loss_handling()
 	
-	print(lives)
 	
 	paddle1Sprite.modulate = Color(SinglePlayerLogic.RGB[0], SinglePlayerLogic.RGB[1], SinglePlayerLogic.RGB[2], 1)
 	paddle2Sprite.modulate = Color(SinglePlayerLogic.RGB[0], SinglePlayerLogic.RGB[1], SinglePlayerLogic.RGB[2], 1)
@@ -110,10 +114,12 @@ func _on_ballTimer_timeout():
 	if(ballCount < 5):
 		ballCount +=1
 		var newBall = Preload.ball.instance()
-		add_child(newBall)
+		#add_child(newBall)
+		call_deferred("add_child", newBall)
 		newBall.set_position(ballSpawn.get_position())
 		SinglePlayerLogic.explosion(ballSpawn.get_position())
 		timer.wait_time = Global.rng.randi_range(15, 17)
+		timer.start()
 
 #checks if ball hit left lose
 func _on_loseLeft_body_entered(body):
@@ -213,7 +219,7 @@ func _addBall(pos):
 	SinglePlayerLogic.score += 5
 	
 	var newBall = Preload.ball.instance()
-	add_child(newBall)
+	call_deferred("add_child", newBall)
 	newBall.set_position(pos)
 	
 func _addTen():

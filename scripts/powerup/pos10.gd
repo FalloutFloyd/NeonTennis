@@ -15,6 +15,7 @@ func _ready():
 
 func _on_pos10_area_entered(area):
 	if "ball" in area.name:
+		SinglePlayerLogic.explosion(self.get_position())
 		emit_signal("add10")
 		$CollisionShape2D.queue_free()
 		tween.interpolate_property($Sprite, "modulate", Color(0,1,0, 1), Color(0, 1, 0, 0), 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN)

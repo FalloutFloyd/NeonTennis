@@ -9,13 +9,15 @@ var selection = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	BABBY.pressed = Global.babbyModePressed
-	FULL.pressed = Global.fullscreenPressed
-	SPEED.value = SinglePlayerLogic.ColourSpeed
+	BABBY.pressed = Settings.babbyMode
+	FULL.pressed = Settings.fullscreen
+	SPEED.value = Settings.ColourSpeed
+	
+	
 	selection = Global.graphicsSelection
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	Global.graphicsSelection = selection
 	
 	if selection > 4:
@@ -35,35 +37,32 @@ func _process(delta):
 	if $Timer.get_time_left() == 0:
 		input()
 	
-	SinglePlayerLogic.ColourSpeed = SPEED.value
+	Settings.ColourSpeed = SPEED.value
 	
 	if FULL.is_pressed():
-		OS.window_fullscreen = true
-		Global.fullscreenPressed = true
+		Settings.fullscreen = true
+		OS.window_fullscreen = Settings.fullscreen
 	else:
-		OS.window_fullscreen = false
-		Global.fullscreenPressed = false
+		Settings.fullscreen = false
+		OS.window_fullscreen = Settings.fullscreen
 	
 	if BABBY.is_pressed():
-		Global.babbyMode = true
-		Global.babbyModePressed = true
+		Settings.babbyMode = true
 	else:
-		Global.babbyMode = false
-		Global.babbyModePressed = false
+		Settings.babbyMode = false
 		SinglePlayerLogic.RGB[0] = 1
 		SinglePlayerLogic.RGB[1] = 0
 		SinglePlayerLogic.RGB[2] = 0
-	if Global.babbyModePressed == true:
-		BABBY.pressed = true
-	else:
-		BABBY.pressed = false
+
 
 func input():
 	if Input.is_action_pressed("menu_up"):
 		selection -= 1
+		Global.playSound("res://Sound/select.wav", Vector2(1920/2, 1080/2), true, 1, 1.2)
 		$Timer.start()
 	elif Input.is_action_pressed("menu_down"):
 		selection += 1
+		Global.playSound("res://Sound/select.wav", Vector2(1920/2, 1080/2), true, 1, 1.2)
 		$Timer.start()
 		
 	if selection == 3 and Input.is_action_pressed("menu_left"):

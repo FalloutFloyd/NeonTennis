@@ -3,11 +3,8 @@ extends Node
 var rng = RandomNumberGenerator.new()
 var currentInput = "keyboard"
 
-var babbyMode = false
 var babbyModePressed = false
 var fullscreenPressed = false
-var mute = false
-var mutePressed = false
 
 var settingsSelection = 1
 var soundSelection = 1
@@ -21,8 +18,6 @@ func _ready():
 	OS.window_size = OS.get_screen_size() / 1.5
 	
 	OS.center_window()
-	
-	OS.window_fullscreen = fullscreenPressed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _input(event):
@@ -32,13 +27,13 @@ func _input(event):
 		currentInput = "keyboard"
 
 func playSound(sound, pos, shift, shift1 := 1, shift2 := 1.5):
-	if !mute:
+	if !Settings.mute:
 		if shift == false:
 			var audio = AudioStreamPlayer2D.new()
 			add_child(audio)
 			audio.connect("finished", self, "_on_audio_finished", [audio])
 			audio.set_position(pos)
-			audio.volume_db = SinglePlayerLogic.SFXvolume
+			audio.volume_db = linear2db(Settings.SFXvolume)
 			audio.stream = load(sound)
 			audio.play()
 		elif shift == true:
@@ -46,7 +41,7 @@ func playSound(sound, pos, shift, shift1 := 1, shift2 := 1.5):
 			add_child(audio)
 			audio.connect("finished", self, "_on_audio_finished", [audio])
 			audio.set_position(pos)
-			audio.volume_db = SinglePlayerLogic.SFXvolume
+			audio.volume_db = linear2db(Settings.SFXvolume)
 			audio.stream = load(sound)
 			audio.pitch_scale = rng.randf_range(shift1,shift2)
 			audio.play()

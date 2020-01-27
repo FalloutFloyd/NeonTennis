@@ -13,7 +13,7 @@ func _ready():
 	selection = Global.settingsSelection
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):	
+func _process(_delta):	
 	Global.settingsSelection = selection
 	
 	if selection > 4:
@@ -37,9 +37,11 @@ func _process(delta):
 func input():
 	if Input.is_action_pressed("menu_up"):
 		selection -= 1
+		Global.playSound("res://Sound/select.wav", Vector2(1920/2, 1080/2), true, 1, 1.2)
 		$Timer.start()
 	elif Input.is_action_pressed("menu_down"):
 		selection += 1
+		Global.playSound("res://Sound/select.wav", Vector2(1920/2, 1080/2), true, 1, 1.2)
 		$Timer.start()
 		
 
@@ -49,6 +51,7 @@ func _on_graphics_pressed():
 
 
 func _on_back_pressed():
+	Settings.saveEverything()
 	get_tree().change_scene(Preload.menu)
 
 

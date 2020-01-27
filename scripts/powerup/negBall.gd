@@ -16,6 +16,7 @@ func _ready():
 
 func _on_negBall_body_entered(body):
 	if "ball" in body.name:
+		SinglePlayerLogic.explosion(self.get_position())
 		emit_signal("removeBall")
 		$CollisionShape2D.queue_free()
 		tween.interpolate_property($Sprite, "modulate", Color(1,0,0, 1), Color(1, 0, 0, 0), 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN)

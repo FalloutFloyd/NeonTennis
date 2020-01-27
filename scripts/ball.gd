@@ -2,11 +2,12 @@ extends KinematicBody2D
 
 #initial speed on x and y axis and the position (forces?) of the ball
 var speed = 400
-var ySpeed
 var dir = Vector2()
 
 onready var sprite = $Sprite
 onready var tween = $Tween
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,7 +25,6 @@ func _ready():
 		dir.y = -1
 	elif rand2 == 3:
 		dir.y = 0
-	print(rand2)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,8 +41,18 @@ func _physics_process(delta):
 
 #makes the ball faster once the paddle enters the outer area of the collision
 func _on_Area2D_body_entered(body):
-	SinglePlayerLogic.explosion(get_position())
-	#changes ball speed by 2.5 every collision
+	if body.name == "Paddle1":
+		SinglePlayerLogic.explosionDIR(get_position(), 0)
+	elif body.name == "Paddle2":
+		SinglePlayerLogic.explosionDIR(get_position(), 180)
+	elif body.name == "top":
+		SinglePlayerLogic.explosionDIR(get_position(), 90)
+	elif body.name == "bottom":
+		SinglePlayerLogic.explosionDIR(get_position(), 270)
+	else:
+		SinglePlayerLogic.explosion(get_position())
+	
+	#changes ball speed by 10 every collision
 	speed += 5
 
 func _on_Area2D_area_entered(area):
@@ -54,10 +64,8 @@ func _on_Area2D_area_entered(area):
 		$endTimer.start()
 	if area.name == "pad_up":
 		dir.y = -1
-		print("up")
 	elif area.name == "pad_down":
 		dir.y = 1
-		print("down")
 
 #despawns on timer end
 func _on_endTimer_timeout():

@@ -1,17 +1,20 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scripts/menu.gd" type="Script" id=1]
 [ext_resource path="res://Font/visitor1.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Img/title/small/singleplayer1.png" type="Texture" id=3]
 [ext_resource path="res://Img/title/small/singleplayer3.png" type="Texture" id=4]
 [ext_resource path="res://Img/title/small/singleplayer2.png" type="Texture" id=5]
-[ext_resource path="res://Img/title/small/options1.png" type="Texture" id=6]
-[ext_resource path="res://Img/title/small/options3.png" type="Texture" id=7]
-[ext_resource path="res://Img/title/small/options2.png" type="Texture" id=8]
-[ext_resource path="res://Img/title/small/exit1.png" type="Texture" id=9]
-[ext_resource path="res://Img/title/small/exit3.png" type="Texture" id=10]
-[ext_resource path="res://Img/title/small/exit2.png" type="Texture" id=11]
-[ext_resource path="res://environments/glow.tres" type="Environment" id=12]
+[ext_resource path="res://Img/title/small/multi1.png" type="Texture" id=6]
+[ext_resource path="res://Img/title/small/multi3.png" type="Texture" id=7]
+[ext_resource path="res://Img/title/small/multi2.png" type="Texture" id=8]
+[ext_resource path="res://Img/title/small/options1.png" type="Texture" id=9]
+[ext_resource path="res://Img/title/small/options3.png" type="Texture" id=10]
+[ext_resource path="res://Img/title/small/options2.png" type="Texture" id=11]
+[ext_resource path="res://Img/title/small/exit1.png" type="Texture" id=12]
+[ext_resource path="res://Img/title/small/exit3.png" type="Texture" id=13]
+[ext_resource path="res://Img/title/small/exit2.png" type="Texture" id=14]
+[ext_resource path="res://environments/glow.tres" type="Environment" id=15]
 
 [sub_resource type="DynamicFont" id=1]
 size = 250
@@ -33,9 +36,9 @@ margin_bottom = 1080.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 110.0
-margin_top = 202.0
+margin_top = 150.0
 margin_right = 1810.0
-margin_bottom = 878.0
+margin_bottom = 930.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
@@ -64,7 +67,7 @@ text = "High SCORE:
 margin_left = 562.0
 margin_top = 368.0
 margin_right = 1137.0
-margin_bottom = 676.0
+margin_bottom = 780.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
@@ -78,30 +81,54 @@ texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 texture_hover = ExtResource( 5 )
 
-[node name="Options" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+[node name="Multiplayer" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 104.0
 margin_right = 575.0
 margin_bottom = 204.0
 texture_normal = ExtResource( 6 )
 texture_pressed = ExtResource( 7 )
-texture_hover = ExtResource( 8 )
+texture_focused = ExtResource( 8 )
 
-[node name="Exit" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+[node name="Options" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 208.0
 margin_right = 575.0
 margin_bottom = 308.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
 texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 10 )
 texture_hover = ExtResource( 11 )
 
+[node name="Exit" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+margin_top = 312.0
+margin_right = 575.0
+margin_bottom = 412.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 13 )
+texture_hover = ExtResource( 14 )
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 12 )
+environment = ExtResource( 15 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.15
+one_shot = true
+
+[node name="Timer1" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true
+
+[node name="Timer3" type="Timer" parent="."]
+wait_time = 0.35
 one_shot = true
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/Singleplayer" to="." method="_on_Singleplayer_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/Multiplayer" to="." method="_on_Multiplayer_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="timeout" from="Timer1" to="." method="_on_Timer1_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
+[connection signal="timeout" from="Timer3" to="." method="_on_Timer3_timeout"]

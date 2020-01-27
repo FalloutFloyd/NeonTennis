@@ -75,7 +75,7 @@ texture_hover = ExtResource( 13 )
 environment = ExtResource( 14 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.15
 one_shot = true
 [connection signal="pressed" from="CenterContainer/VBoxContainer/graphics" to="." method="_on_graphics_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/sound" to="." method="_on_sound_pressed"]

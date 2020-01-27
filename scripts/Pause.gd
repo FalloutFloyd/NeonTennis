@@ -11,7 +11,7 @@ func _ready():
 	RESUME.grab_focus()
 
 #changes controller focus if you mouse over
-func _process(delta):
+func _process(_delta):
 	if selection > 3:
 		selection = 1
 	elif selection < 1:
@@ -51,7 +51,9 @@ func _on_MainMenu_pressed():
 func input():
 	if Input.is_action_pressed("menu_up"):
 		selection -= 1
+		Global.playSound("res://Sound/select.wav", Vector2(1920/2, 1080/2), true, 1, 1.2)
 		$Timer.start()
 	elif Input.is_action_pressed("menu_down"):
 		selection += 1
+		Global.playSound("res://Sound/select.wav", Vector2(1920/2, 1080/2), true, 1, 1.2)
 		$Timer.start()
