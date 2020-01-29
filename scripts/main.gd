@@ -13,6 +13,7 @@ onready var gameOver = $GameOver
 onready var gameOverText = $GameOver/CenterContainer/Label
 onready var powerupTimer = $powerupTimer
 
+
 var i = 1
 
 #defines the score as 0, lives as 4 and number of balls as 1
@@ -135,7 +136,9 @@ func _on_loseRight_body_entered(body):
 
 #sets lost to true if num of balls < 1 or lives < 1
 func loss_handling():
-	if(ballCount < 1 or lives < 1):
+	if ballCount < 1 or lives < 1 and !lost:
+		$AudioStreamPlayer/Tween.interpolate_property($AudioStreamPlayer, "volume_db", linear2db(Settings.MUSICvolume), linear2db(0), 3, Tween.TRANS_LINEAR,Tween.EASE_IN, 0)
+		$AudioStreamPlayer/Tween.start()
 		lost = true 
 		
 	#sets gameover screen to true and starts timer to go back to menu

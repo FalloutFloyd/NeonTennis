@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://Img/paddle.png" type="Texture" id=2]
@@ -31,26 +31,23 @@ blend_mode = 1
 extents = Vector2( 25.9964, 96.0023 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 13.0453, 40.5804 )
-
-[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 9, 96.512 )
 
-[sub_resource type="CanvasItemMaterial" id=9]
+[sub_resource type="CanvasItemMaterial" id=8]
 blend_mode = 1
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=9]
 size = 160
 use_mipmaps = true
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=10]
 size = 100
 font_data = ExtResource( 8 )
 
-[sub_resource type="CanvasItemMaterial" id=12]
+[sub_resource type="CanvasItemMaterial" id=11]
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=12]
 size = 150
 outline_color = Color( 1, 0, 0, 1 )
 font_data = ExtResource( 8 )
@@ -139,18 +136,6 @@ autostart = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="paddle1/Paddle1"]
 shape = SubResource( 6 )
 
-[node name="pad_up" type="Area2D" parent="paddle1/Paddle1"]
-position = Vector2( 15, -48 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="paddle1/Paddle1/pad_up"]
-shape = SubResource( 7 )
-
-[node name="pad_down" type="Area2D" parent="paddle1/Paddle1"]
-position = Vector2( 15, 48 )
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="paddle1/Paddle1/pad_down"]
-shape = SubResource( 7 )
-
 [node name="paddle2" type="Node" parent="."]
 
 [node name="Paddle2" type="KinematicBody2D" parent="paddle2" groups=[
@@ -166,7 +151,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="paddle2/Paddle2/Pad2Score"]
 position = Vector2( -35, 0 )
-shape = SubResource( 8 )
+shape = SubResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="paddle2/Paddle2"]
 material = SubResource( 5 )
@@ -189,18 +174,6 @@ autostart = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="paddle2/Paddle2"]
 shape = SubResource( 6 )
 
-[node name="pad_up" type="Area2D" parent="paddle2/Paddle2"]
-position = Vector2( -15, -48 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="paddle2/Paddle2/pad_up"]
-shape = SubResource( 7 )
-
-[node name="pad_down" type="Area2D" parent="paddle2/Paddle2"]
-position = Vector2( -15, 48 )
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="paddle2/Paddle2/pad_down"]
-shape = SubResource( 7 )
-
 [node name="ballSpawn" type="Position2D" parent="."]
 position = Vector2( 960, 540 )
 
@@ -217,13 +190,13 @@ one_shot = true
 [node name="GUI" type="Control" parent="."]
 
 [node name="Label" type="Label" parent="GUI"]
-material = SubResource( 9 )
+material = SubResource( 8 )
 margin_left = 814.0
 margin_top = 30.0
 margin_right = 1107.0
 margin_bottom = 206.0
 rect_pivot_offset = Vector2( 146, 90 )
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 9 )
 text = "0"
 align = 1
 valign = 1
@@ -234,7 +207,7 @@ margin_top = 73.0
 margin_right = 1439.0
 margin_bottom = 163.0
 rect_pivot_offset = Vector2( 9, 4.5 )
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "XXX"
 align = 1
@@ -255,13 +228,13 @@ margin_right = 1920.0
 margin_bottom = 1080.0
 
 [node name="Label" type="Label" parent="GameOver/CenterContainer"]
-material = SubResource( 12 )
+material = SubResource( 11 )
 margin_left = 517.0
 margin_top = 403.0
 margin_right = 1402.0
 margin_bottom = 676.0
 rect_pivot_offset = Vector2( 442.5, 136.5 )
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "YOU LOSE
 Score: 1000"
@@ -279,11 +252,11 @@ use_parent_material = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 10 )
 
-[node name="Tween" type="Tween" parent="."]
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
 volume_db = -6.969
+
+[node name="Tween" type="Tween" parent="AudioStreamPlayer"]
 [connection signal="body_entered" from="Lose/loseLeft" to="." method="_on_loseLeft_body_entered"]
 [connection signal="body_entered" from="Lose/loseRight" to="." method="_on_loseRight_body_entered"]
 [connection signal="body_entered" from="paddle1/Paddle1/Pad1Score" to="." method="_on_Pad1Score_body_entered"]

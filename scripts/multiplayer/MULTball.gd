@@ -1,11 +1,14 @@
 extends KinematicBody2D
 
 #initial speed on x and y axis and the position (forces?) of the ball
-var speed = 400
+var speed = 10
 var dir = Vector2()
 
 onready var sprite = $Sprite
 onready var tween = $Tween
+
+onready var paddleOne = get_node("../paddleOrange/PaddleOrange")
+onready var paddleTwo = get_node("../paddleBlue/PaddleBlue")
 
 var colour
 
@@ -34,7 +37,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	#makes collision a var that checks if a collision has occured in move_and_collide
-	var is_colliding = move_and_collide(Vector2(dir.x * speed * delta, dir.y * speed * delta))
+	var is_colliding = move_and_collide(Vector2(dir.x, dir.y).normalized() * speed)
 	
 	#bounces the ball if collision occurs
 	if(is_colliding):
@@ -43,7 +46,28 @@ func _physics_process(delta):
 #makes the ball faster once the paddle enters the outer area of the collision
 func _on_Area2D_body_entered(body):
 	#changes ball speed by 10 every collision
-	speed += 10
+	speed += 0.25
+	
+	if body.name == "PaddleOrange":
+		if Settings.newMovement == true:
+			dir.y = (self.position.y - paddleOne.position.y) * 0.015
+		else:
+			if (self.position.y - paddleOne.position.y) * 0.01 <= -0.3:
+				dir.y = -1
+			elif (self.position.y - paddleOne.position.y) * 0.01 >= 0.3: 
+				dir.y = 1
+			else:
+				dir.y = 0
+	if body.name == "PaddleBlue":
+		if Settings.newMovement == true:
+			dir.y = (self.position.y - paddleTwo.position.y) * 0.015
+		else:
+			if (self.position.y - paddleTwo.position.y) * 0.01 <= -0.3:
+				dir.y = -1
+			elif (self.position.y - paddleTwo.position.y) * 0.01 >= 0.3: 
+				dir.y = 1
+			else:
+				dir.y = 0
 	
 	if "Orange" in body.name and colour == "blue" :
 		colour = "orange"
@@ -72,12 +96,6 @@ func _on_Area2D_area_entered(area):
 		tween.interpolate_property(self, "modulate", Color(1,1,1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		tween.start()
 		$endTimer.start()
-	if area.name == "pad_up":
-		dir.y = -1
-		#print("up")
-	elif area.name == "pad_down":
-		dir.y = 1
-		#print("down")
 
 #despawns on timer end
 func _on_endTimer_timeout():

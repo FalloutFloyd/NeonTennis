@@ -145,7 +145,9 @@ func _on_scoreOrange_body_entered(body):
 
 #sets lost to true if num of balls < 1 or lives < 1
 func loss_handling():
-	if(gameTimer.get_time_left() == 0):
+	if gameTimer.get_time_left() == 0 and !lost:
+		$AudioStreamPlayer/Tween.interpolate_property($AudioStreamPlayer, "volume_db", linear2db(Settings.MUSICvolume), linear2db(0), 3, Tween.TRANS_LINEAR,Tween.EASE_IN, 0)
+		$AudioStreamPlayer/Tween.start()
 		lost = true 
 		
 	#sets gameover screen to true and starts timer to go back to menu

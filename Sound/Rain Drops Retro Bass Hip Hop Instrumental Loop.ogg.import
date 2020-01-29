@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Rain Drops Retro Bass Hip Hop Instrumental Loop.ogg-0864f1c6d67121b43074df154b8815cf.oggstr"
+
+[deps]
+
+source_file="res://Sound/Rain Drops Retro Bass Hip Hop Instrumental Loop.ogg"
+dest_files=[ "res://.import/Rain Drops Retro Bass Hip Hop Instrumental Loop.ogg-0864f1c6d67121b43074df154b8815cf.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

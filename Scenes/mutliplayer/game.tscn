@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://scripts/multiplayer/MULTgame.gd" type="Script" id=1]
 [ext_resource path="res://Img/paddle.png" type="Texture" id=2]
@@ -30,10 +30,7 @@ blend_mode = 1
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 25.9964, 96.0023 )
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 13.0453, 40.5804 )
-
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 resource_name = "Grow"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
@@ -46,24 +43,24 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1, 2 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Shrink"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 2 ), Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=9]
-resource_name = "Shrink"
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 2 ), Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=10]
 resource_name = "Grow"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
@@ -78,7 +75,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1, 2 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=10]
 resource_name = "Shrink"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
@@ -93,24 +90,24 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 2 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="CanvasItemMaterial" id=12]
+[sub_resource type="CanvasItemMaterial" id=11]
 blend_mode = 1
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=12]
 size = 200
 use_mipmaps = true
 font_data = ExtResource( 8 )
 
-[sub_resource type="CanvasItemMaterial" id=14]
+[sub_resource type="CanvasItemMaterial" id=13]
 blend_mode = 1
 
-[sub_resource type="DynamicFont" id=15]
+[sub_resource type="DynamicFont" id=14]
 size = 90
 font_data = ExtResource( 8 )
 
-[sub_resource type="CanvasItemMaterial" id=16]
+[sub_resource type="CanvasItemMaterial" id=15]
 
-[sub_resource type="DynamicFont" id=17]
+[sub_resource type="DynamicFont" id=16]
 size = 150
 outline_color = Color( 1, 0, 0, 1 )
 font_data = ExtResource( 8 )
@@ -173,7 +170,6 @@ shape = SubResource( 2 )
 [node name="PaddleOrange" type="KinematicBody2D" parent="paddleOrange" groups=[
 "Paddle",
 ]]
-editor/display_folded = true
 material = SubResource( 3 )
 position = Vector2( 288, 540 )
 __meta__ = {
@@ -209,24 +205,10 @@ autostart = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="paddleOrange/PaddleOrange"]
 shape = SubResource( 6 )
 
-[node name="pad_up" type="Area2D" parent="paddleOrange/PaddleOrange"]
-editor/display_folded = true
-position = Vector2( 15, -48 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="paddleOrange/PaddleOrange/pad_up"]
-shape = SubResource( 7 )
-
-[node name="pad_down" type="Area2D" parent="paddleOrange/PaddleOrange"]
-editor/display_folded = true
-position = Vector2( 15, 48 )
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="paddleOrange/PaddleOrange/pad_down"]
-shape = SubResource( 7 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="paddleOrange"]
 root_node = NodePath("../PaddleOrange")
-anims/Grow = SubResource( 8 )
-anims/Shrink = SubResource( 9 )
+anims/Grow = SubResource( 7 )
+anims/Shrink = SubResource( 8 )
 
 [node name="orangeTimer" type="Timer" parent="paddleOrange"]
 wait_time = 5.0
@@ -237,7 +219,6 @@ one_shot = true
 [node name="PaddleBlue" type="KinematicBody2D" parent="paddleBlue" groups=[
 "Paddle",
 ]]
-editor/display_folded = true
 material = SubResource( 3 )
 position = Vector2( 1632, 540 )
 __meta__ = {
@@ -265,22 +246,10 @@ autostart = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="paddleBlue/PaddleBlue"]
 shape = SubResource( 6 )
 
-[node name="pad_up" type="Area2D" parent="paddleBlue/PaddleBlue"]
-position = Vector2( -15, -48 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="paddleBlue/PaddleBlue/pad_up"]
-shape = SubResource( 7 )
-
-[node name="pad_down" type="Area2D" parent="paddleBlue/PaddleBlue"]
-position = Vector2( -15, 48 )
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="paddleBlue/PaddleBlue/pad_down"]
-shape = SubResource( 7 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="paddleBlue"]
 root_node = NodePath("../PaddleBlue")
-anims/Grow = SubResource( 10 )
-anims/Shrink = SubResource( 11 )
+anims/Grow = SubResource( 9 )
+anims/Shrink = SubResource( 10 )
 
 [node name="blueTimer" type="Timer" parent="paddleBlue"]
 wait_time = 5.0
@@ -303,37 +272,37 @@ one_shot = true
 
 [node name="orangeScore" type="Label" parent="GUI"]
 modulate = Color( 1, 0.439216, 0, 1 )
-material = SubResource( 12 )
+material = SubResource( 11 )
 margin_left = 333.501
 margin_top = 30.0
 margin_right = 626.501
 margin_bottom = 206.0
 rect_pivot_offset = Vector2( 146, 90 )
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 12 )
 text = "0"
 align = 1
 valign = 1
 
 [node name="blueScore" type="Label" parent="GUI"]
 modulate = Color( 0, 0, 1, 1 )
-material = SubResource( 12 )
+material = SubResource( 11 )
 margin_left = 1293.5
 margin_top = 30.0
 margin_right = 1586.5
 margin_bottom = 206.0
 rect_pivot_offset = Vector2( 146, 90 )
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 12 )
 text = "0"
 align = 1
 valign = 1
 
 [node name="TimeLeft" type="Label" parent="GUI"]
-material = SubResource( 14 )
+material = SubResource( 13 )
 margin_left = 864.0
 margin_top = 30.0
 margin_right = 1157.0
 margin_bottom = 206.0
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 14 )
 text = "0:00"
 align = 1
 valign = 1
@@ -353,13 +322,13 @@ margin_right = 1920.0
 margin_bottom = 1080.0
 
 [node name="Label" type="Label" parent="GameOver/CenterContainer"]
-material = SubResource( 16 )
+material = SubResource( 15 )
 margin_left = 495.0
 margin_top = 472.0
 margin_right = 1425.0
 margin_bottom = 607.0
 rect_pivot_offset = Vector2( 442.5, 136.5 )
-custom_fonts/font = SubResource( 17 )
+custom_fonts/font = SubResource( 16 )
 text = "Orange Wins"
 align = 1
 valign = 1
@@ -380,6 +349,8 @@ environment = ExtResource( 10 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
 volume_db = -6.969
+
+[node name="Tween" type="Tween" parent="AudioStreamPlayer"]
 [connection signal="body_entered" from="Score/scoreBlue" to="." method="_on_scoreBlue_body_entered"]
 [connection signal="body_entered" from="Score/scoreOrange" to="." method="_on_scoreOrange_body_entered"]
 [connection signal="body_entered" from="paddleOrange/PaddleOrange/orangeBall" to="." method="_on_Pad1Score_body_entered"]

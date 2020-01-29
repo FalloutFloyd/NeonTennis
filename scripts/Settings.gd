@@ -4,6 +4,7 @@ var selection = 1
 
 onready var GRAPH = $CenterContainer/VBoxContainer/graphics
 onready var SOUND = $CenterContainer/VBoxContainer/sound
+onready var GAME = $CenterContainer/VBoxContainer/gameplay
 onready var CRED = $CenterContainer/VBoxContainer/credits
 onready var BACK = $CenterContainer/VBoxContainer/back
 
@@ -16,16 +17,18 @@ func _ready():
 func _process(_delta):	
 	Global.settingsSelection = selection
 	
-	if selection > 4:
+	if selection > 5:
 		selection = 1
 	elif selection < 1:
-		selection = 4
+		selection = 5
 
 	if selection == 1:
 		GRAPH.grab_focus()
 	elif selection == 2:
 		SOUND.grab_focus()
 	elif selection == 3:
+		GAME.grab_focus()
+	elif selection == 4:
 		CRED.grab_focus()
 	else:
 		BACK.grab_focus()
@@ -61,3 +64,7 @@ func _on_sound_pressed():
 
 func _on_credits_pressed():
 	get_tree().change_scene(Preload.credits)
+
+
+func _on_gameplay_pressed():
+	get_tree().change_scene(Preload.gameplay)

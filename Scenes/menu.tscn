@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scripts/menu.gd" type="Script" id=1]
 [ext_resource path="res://Font/visitor1.ttf" type="DynamicFontData" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Img/title/small/exit3.png" type="Texture" id=13]
 [ext_resource path="res://Img/title/small/exit2.png" type="Texture" id=14]
 [ext_resource path="res://environments/glow.tres" type="Environment" id=15]
+[ext_resource path="res://Sound/Rain Drops Retro Bass Hip Hop Instrumental Loop.ogg" type="AudioStream" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 size = 250
@@ -125,6 +126,9 @@ one_shot = true
 [node name="Timer3" type="Timer" parent="."]
 wait_time = 0.35
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/Singleplayer" to="." method="_on_Singleplayer_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/Multiplayer" to="." method="_on_Multiplayer_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/Options" to="." method="_on_Options_pressed"]

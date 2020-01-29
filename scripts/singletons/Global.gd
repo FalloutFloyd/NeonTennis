@@ -10,6 +10,7 @@ var settingsSelection = 1
 var soundSelection = 1
 var graphicsSelection = 1
 var menuSelection = 1
+var gameplaySelection = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

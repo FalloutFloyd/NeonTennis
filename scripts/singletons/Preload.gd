@@ -37,6 +37,7 @@ var sound = "res://Scenes/sound.tscn"
 var SP = "res://Scenes/singleplayer/game.tscn"
 var credits = "res://Scenes/credits.tscn"
 var MP = "res://Scenes/mutliplayer/game.tscn"
+var gameplay = "res://Scenes/gameplay.tscn"
 
 func _ready():
 	pass

@@ -12,6 +12,12 @@ func _ready():
 	SinglePlayerLogic.CurrentMode = "MENU"
 	$MarginContainer/VBoxContainer/Label2.set_text("HIGH SCORE: "+str(SinglePlayerLogic.topScore)+"\n\n")
 	selection = Global.menuSelection
+	$AudioStreamPlayer.volume_db = linear2db(Settings.MUSICvolume)
+	
+	if !Settings.mute:
+		$AudioStreamPlayer.play()
+	else: 
+		pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
